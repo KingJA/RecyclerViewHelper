@@ -4,11 +4,20 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv"
+    <FrameLayout
+        android:background="#bebebe"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1">
+
+        <android.support.v7.widget.RecyclerView
+            android:background="#ffffff"
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </FrameLayout>
+
 
     <View
         android:layout_width="match_parent"
@@ -63,11 +72,11 @@
                     android:text="颜色"/>
 
                 <ImageView
-                    android:src="@mipmap/music_1"
                     android:id="@+id/iv_divide_color"
                     android:layout_width="32dp"
                     android:layout_height="16dp"
-                    android:background="#FF4081"/>
+                    android:background="#FF4081"
+                    android:src="@mipmap/music_1"/>
 
             </LinearLayout>
 

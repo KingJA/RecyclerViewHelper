@@ -51,6 +51,7 @@ public class SampleActivity extends AppCompatActivity {
     private String[] styles = {"vertical", "horizontal", "grid"};
     private RecyclerViewHelper recyclerViewHelper;
     private int dividerWidth;
+    private int dividerColor=0xffFF4081;
     private RecyclerView.ItemDecoration itemDecoration;
     private BaseRvAdaper mAdapter;
     private LayoutHelper.LayoutStyle layoutStyle;
@@ -101,7 +102,7 @@ public class SampleActivity extends AppCompatActivity {
                 .setAdapter(mAdapter)
                 .setLayoutStyle(layoutStyle)
                 .setDividerHeight(dividerWidth)
-                .setDividerColor(0xffff0000)
+                .setDividerColor(dividerColor)
                 .build();
         recyclerViewHelper.attachToRecyclerView(mRv);
         itemDecoration = recyclerViewHelper.getItemDecoration();
