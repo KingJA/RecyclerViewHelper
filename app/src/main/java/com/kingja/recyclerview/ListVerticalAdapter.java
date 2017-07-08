@@ -2,10 +2,13 @@ package com.kingja.recyclerview;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kingja.recyclerviewhelper.BaseRvAdaper;
+import com.kingja.recyclerviewhelper.RecyclerViewHelper;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -14,10 +17,10 @@ import java.util.List;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class ListVerticalAdapter extends BaseRvAdaper<String>  {
+public class ListVerticalAdapter extends BaseRvAdaper<Music>implements RecyclerViewHelper.OnItemCallback   {
 
 
-    public ListVerticalAdapter(Context context, List<String> list) {
+    public ListVerticalAdapter(Context context, List<Music> list) {
         super(context, list);
     }
 
@@ -32,20 +35,36 @@ public class ListVerticalAdapter extends BaseRvAdaper<String>  {
     }
 
     @Override
-    protected void bindHolder(ViewHolder baseHolder, String bean, final int position) {
+    protected void bindHolder(ViewHolder baseHolder, Music bean, final int position) {
         final GiftViewHolder holder = (GiftViewHolder) baseHolder;
-        holder.tv_test.setText(bean);
+        holder.tv_music_name.setText(bean.getMusicName());
+        holder.tv_music_author.setText(bean.getMusicAuthor());
+        holder.iv_music_img.setBackgroundResource(bean.getMusicResId());
+    }
+
+    @Override
+    public void onMove(int fromPosition, int toPosition) {
+        Collections.swap(list, fromPosition, toPosition);
+        notifyItemMoved(fromPosition, toPosition);
+    }
+
+    @Override
+    public void onSwipe(int position) {
+        list.remove(position);
+        notifyItemRemoved(position);
     }
 
 
-
-
     class GiftViewHolder extends ViewHolder {
-        public TextView tv_test;
+        public TextView tv_music_name;
+        public TextView tv_music_author;
+        public ImageView iv_music_img;
 
         public GiftViewHolder(View itemView) {
             super(itemView);
-            tv_test = (TextView) itemView.findViewById(R.id.tv_test);
+            tv_music_name = (TextView) itemView.findViewById(R.id.tv_music_name);
+            tv_music_author = (TextView) itemView.findViewById(R.id.tv_music_author);
+            iv_music_img = (ImageView) itemView.findViewById(R.id.iv_music_img);
         }
     }
 }

@@ -20,6 +20,8 @@ android {
     lintOptions{
         abortOnError false
     }
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
 }
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"

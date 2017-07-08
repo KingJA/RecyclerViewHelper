@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private List<Data> datas = new ArrayList<>();
+    private List<Music> musics = new ArrayList<>();
     private int[] imgarr = {R.mipmap.image_mycar, R.mipmap.image_mycare, R.mipmap.image_myhouse,
             R.mipmap.image_myintermediary, R.mipmap.image_myrental, R.mipmap.image_mycare, R.mipmap.image_myhouse,
             R.mipmap.image_myintermediary, R.mipmap.image_myrental, R.mipmap.image_mycare, R.mipmap.image_myhouse,
@@ -29,13 +29,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        for (int i = 0; i < imgarr.length; i++) {
-            datas.add(new Data("Item" + i, imgarr[i]));
-        }
+//        for (int i = 0; i < imgarr.length; i++) {
+//            musics.add(new Music("Item" + i, imgarr[i]));
+//        }
 
 
-        mMoveableAdapter = new MoveableAdapter(this, datas);
-        mNormalAdapter = new NormalAdapter(this, datas);
+        mMoveableAdapter = new MoveableAdapter(this, musics);
+        mNormalAdapter = new NormalAdapter(this, musics);
 
 
     }

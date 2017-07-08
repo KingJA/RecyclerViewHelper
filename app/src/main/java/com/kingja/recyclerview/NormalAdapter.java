@@ -18,10 +18,10 @@ import java.util.List;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class NormalAdapter extends BaseRvAdaper<Data> implements RecyclerViewHelper.OnItemCallback{
+public class NormalAdapter extends BaseRvAdaper<Music> implements RecyclerViewHelper.OnItemCallback{
 
 
-    public NormalAdapter(Context context, List<Data> list) {
+    public NormalAdapter(Context context, List<Music> list) {
         super(context, list);
     }
 
@@ -36,7 +36,7 @@ public class NormalAdapter extends BaseRvAdaper<Data> implements RecyclerViewHel
     }
 
     @Override
-    protected void bindHolder(ViewHolder baseHolder, Data bean, final int position) {
+    protected void bindHolder(ViewHolder baseHolder, Music bean, final int position) {
         final GiftViewHolder holder = (GiftViewHolder) baseHolder;
                 holder.tv_delete.setOnClickListener(new View.OnClickListener() {
             @Override

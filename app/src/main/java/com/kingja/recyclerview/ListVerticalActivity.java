@@ -22,8 +22,8 @@ public class ListVerticalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_vertical);
         RecyclerView rv = (RecyclerView) findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        ListVerticalAdapter mListVerticalAdapter = new ListVerticalAdapter(this, Arrays.asList("A", "B", "C"));
-        rv.setAdapter(mListVerticalAdapter);
+//        ListVerticalAdapter mListVerticalAdapter = new ListVerticalAdapter(this, Arrays.asList("A", "B", "C"));
+//        rv.setAdapter(mListVerticalAdapter);
         rv.addItemDecoration(new ListVerticalDecoration());
 
     }

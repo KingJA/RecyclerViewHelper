@@ -17,10 +17,10 @@ import java.util.List;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class MoveableAdapter extends BaseRvAdaper<Data> implements RecyclerViewHelper.OnItemCallback {
+public class MoveableAdapter extends BaseRvAdaper<Music> implements RecyclerViewHelper.OnItemCallback {
 
 
-    public MoveableAdapter(Context context, List<Data> list) {
+    public MoveableAdapter(Context context, List<Music> list) {
         super(context, list);
     }
 
@@ -35,10 +35,10 @@ public class MoveableAdapter extends BaseRvAdaper<Data> implements RecyclerViewH
     }
 
     @Override
-    protected void bindHolder(ViewHolder baseHolder, Data bean, final int position) {
+    protected void bindHolder(ViewHolder baseHolder, Music bean, final int position) {
         final GiftViewHolder holder = (GiftViewHolder) baseHolder;
-        holder.tv_msg.setText(bean.getMsg());
-        holder.iv_icon.setBackgroundResource(bean.getResId());
+        holder.tv_msg.setText(bean.getMusicName());
+        holder.iv_icon.setBackgroundResource(bean.getMusicResId());
     }
 
     public void onMove(int fromPosition, int toPosition) {

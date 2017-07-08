@@ -26,5 +26,6 @@ public class GridActivity extends AppCompatActivity {
         rv.setAdapter(mGridAdapter);
         rv.addItemDecoration(new GridDecoration());
 
+
     }
 }
