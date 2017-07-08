@@ -1,0 +1,45 @@
+apply plugin: 'com.android.library'
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+//    lintOptions{
+//        abortOnError false
+//    }
+}
+//tasks.withType(JavaCompile) {
+//    options.encoding = "UTF-8"
+//}
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
+}
+//publish {
+//    //bintray.com用户名
+//    userOrg = 'kingja'
+//    //jcenter上的路径
+//    groupId = 'com.kingja.recylcerviewhelper'
+//    //artifactId 在maven 创建的包名kingja / maven / switchbutton
+//    artifactId = 'recylcerviewhelper'
+//    //版本号
+//    publishVersion = '1.0.1'
+//    //描述
+//    desc = 'oh,this is a simple and useful RecyclerViewHelper'
+//    //网站
+//    website = 'https://github.com/KingJA/RecyclerViewHelp'
+//}

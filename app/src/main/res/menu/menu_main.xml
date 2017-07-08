@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.shinelon.myapplication.MainActivity">
+    <item
+        android:id="@+id/action_vertical_list"
+        android:orderInCategory="100"
+        android:title="VERTICAL_LIST"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_horizontal_list"
+        android:orderInCategory="100"
+        android:title="HORIZONTAL_LIST"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_grid"
+        android:orderInCategory="100"
+        android:title="GRID"
+        app:showAsAction="never" />
+</menu>
