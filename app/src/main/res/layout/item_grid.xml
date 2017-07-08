@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#f47878"
-                android:orientation="horizontal">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:orientation="vertical"
+              android:padding="12dp">
 
     <ImageView
-        android:layout_centerInParent="true"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_marginBottom="6dp"
+        android:id="@+id/iv_music_img"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:background="@mipmap/circle"/>
 
     <TextView
-        android:id="@+id/tv_test"
+        android:gravity="center"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:id="@+id/tv_music_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:text="Hot2Touch (Kyle Watson Remix)"/>
+
+    <TextView
+        android:id="@+id/tv_music_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:padding="24dp"
-        android:text="A"/>
+        android:text="Felix Jaehn"/>
 
-</RelativeLayout>
+</LinearLayout>

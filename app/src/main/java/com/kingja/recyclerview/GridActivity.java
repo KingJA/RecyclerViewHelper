@@ -22,8 +22,8 @@ public class GridActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
         RecyclerView rv = (RecyclerView) findViewById(R.id.rv);
         rv.setLayoutManager(new GridLayoutManager(this,4));
-        GridAdapter mGridAdapter = new GridAdapter(this, Arrays.asList("A", "B", "C", "D", "E", "F", "G"));
-        rv.setAdapter(mGridAdapter);
+//        GridAdapter mGridAdapter = new GridAdapter(this, Arrays.asList("A", "B", "C", "D", "E", "F", "G"));
+//        rv.setAdapter(mGridAdapter);
         rv.addItemDecoration(new GridDecoration());
 
 

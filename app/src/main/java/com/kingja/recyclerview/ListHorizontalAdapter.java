@@ -14,10 +14,10 @@ import java.util.List;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class ListHorizontalAdapter extends BaseRvAdaper<String>  {
+public class ListHorizontalAdapter extends BaseRvAdaper<Music>  {
 
 
-    public ListHorizontalAdapter(Context context, List<String> list) {
+    public ListHorizontalAdapter(Context context, List<Music> list) {
         super(context, list);
     }
 
@@ -32,9 +32,9 @@ public class ListHorizontalAdapter extends BaseRvAdaper<String>  {
     }
 
     @Override
-    protected void bindHolder(ViewHolder baseHolder, String bean, final int position) {
+    protected void bindHolder(ViewHolder baseHolder, Music bean, final int position) {
         final GiftViewHolder holder = (GiftViewHolder) baseHolder;
-        holder.tv_test.setText(bean);
+//        holder.tv_test.setText(bean);
     }
 
 

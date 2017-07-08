@@ -21,6 +21,7 @@ public class RecyclerViewHelper {
     private int mDividerHeight;
     private int mDividerColor;
     private int mColumns;
+    private RecyclerView.ItemDecoration mItemDecoration;
 
     public RecyclerViewHelper(Builder builder) {
         this.mColumns = builder.mColumns;
@@ -54,16 +55,22 @@ public class RecyclerViewHelper {
             recyclerView.setAdapter(normalAdapter);
             recyclerView.setLayoutManager(LayoutHelper.getLayoutManager(mContext, mLayoutStyle, mColumns));
             if (mLayoutStyle == mLayoutStyle.GRID) {
-                recyclerView.addItemDecoration(new GridItemDecoration(
-                        mContext, mDividerHeight, mDividerColor));
+                mItemDecoration = new GridItemDecoration(
+                        mContext, mDividerHeight, mDividerColor);
+
             } else {
-                recyclerView.addItemDecoration(new ListItemDecoration(
-                        mContext, mLayoutStyle, mDividerHeight, mDividerColor));
+                mItemDecoration = new ListItemDecoration(
+                        mContext, mLayoutStyle, mDividerHeight, mDividerColor);
             }
+            recyclerView.addItemDecoration(mItemDecoration);
         }
         if (mDragable || mSwipeable) {
             mItemTouchHelper.attachToRecyclerView(recyclerView);
         }
+    }
+
+    public RecyclerView.ItemDecoration getItemDecoration() {
+        return mItemDecoration;
     }
 
     public static class Builder {

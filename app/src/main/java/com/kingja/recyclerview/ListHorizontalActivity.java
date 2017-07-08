@@ -22,8 +22,8 @@ public class ListHorizontalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
         RecyclerView rv = (RecyclerView) findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        ListHorizontalAdapter mListHorizontalAdapter = new ListHorizontalAdapter(this, Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"));
-        rv.setAdapter(mListHorizontalAdapter);
+//        ListHorizontalAdapter mListHorizontalAdapter = new ListHorizontalAdapter(this, Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"));
+//        rv.setAdapter(mListHorizontalAdapter);
         rv.addItemDecoration(new ListHorizontalDecoration());
 
     }

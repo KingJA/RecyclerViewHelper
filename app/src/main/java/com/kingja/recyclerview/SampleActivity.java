@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.kingja.recyclerviewhelper.BaseRvAdaper;
 import com.kingja.recyclerviewhelper.LayoutHelper;
 import com.kingja.recyclerviewhelper.RecyclerViewHelper;
 
@@ -48,6 +49,11 @@ public class SampleActivity extends AppCompatActivity {
     private AppCompatCheckBox mCbSlideable;
     private List<Music> musics = new ArrayList<>();
     private String[] styles = {"vertical", "horizontal", "grid"};
+    private RecyclerViewHelper recyclerViewHelper;
+    private int dividerWidth;
+    private RecyclerView.ItemDecoration itemDecoration;
+    private BaseRvAdaper mAdapter;
+    private LayoutHelper.LayoutStyle layoutStyle;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,21 +86,45 @@ public class SampleActivity extends AppCompatActivity {
 
     }
 
-    private int dividerWidth;
 
     private void setData() {
-        ListVerticalAdapter listVerticalAdapter = new ListVerticalAdapter(this, musics);
-        new RecyclerViewHelper.Builder(this)
-                .setAdapter(listVerticalAdapter)
-                .setLayoutStyle(LayoutHelper.LayoutStyle.VERTICAL_LIST)
-                .setDividerHeight(dividerWidth)
-                .setDividerColor(0xffff0000)
-                .setSwipeable(true)
-                .setDragable(true)
-                .build()
-                .attachToRecyclerView(mRv);
+        mAdapter  = new ListVerticalAdapter(this, musics);
+        layoutStyle = LayoutHelper.LayoutStyle.VERTICAL_LIST;
+        reFreshRv();
     }
 
+    private void reFreshRv() {
+        if (itemDecoration != null) {
+            mRv.removeItemDecoration(itemDecoration);
+        }
+        recyclerViewHelper = new RecyclerViewHelper.Builder(this)
+                .setAdapter(mAdapter)
+                .setLayoutStyle(layoutStyle)
+                .setDividerHeight(dividerWidth)
+                .setDividerColor(0xffff0000)
+                .build();
+        recyclerViewHelper.attachToRecyclerView(mRv);
+        itemDecoration = recyclerViewHelper.getItemDecoration();
+    }
+
+
+    private void setOrientation(int position) {
+        switch (position) {
+            case 0:
+                mAdapter = new ListVerticalAdapter(this, musics);
+                layoutStyle = LayoutHelper.LayoutStyle.VERTICAL_LIST;
+                break;
+            case 1:
+                mAdapter = new ListHorizontalAdapter(this, musics);
+                layoutStyle = LayoutHelper.LayoutStyle.HORIZONTAL_LIST;
+                break;
+            case 2:
+                mAdapter = new GridAdapter(this, musics);
+                layoutStyle = LayoutHelper.LayoutStyle.GRID;
+                break;
+
+        }
+    }
 
     private void initEvent() {
         mSpinnerOrientation.setAdapter(new ArrayAdapter<>(this,
@@ -102,7 +132,8 @@ public class SampleActivity extends AppCompatActivity {
         mSpinnerOrientation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                setOrientation(position);
+                reFreshRv();
             }
 
             @Override
@@ -114,6 +145,8 @@ public class SampleActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 mTvDivideWidth.setText(progress + "dp");
+                dividerWidth = progress;
+                reFreshRv();
             }
 
             @Override
