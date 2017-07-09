@@ -33,8 +33,6 @@ public class ListItemDecoration extends RecyclerView.ItemDecoration {
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-//        super.getItemOffsets(outRect, view, parent, state);
-//        outRect.set(0, 0, 0, mDividerHeight);
         if (mLayoutStyle == VERTICAL_LIST) {
             outRect.set(0, 0, 0, mDividerHeight);
         } else {
@@ -43,7 +41,7 @@ public class ListItemDecoration extends RecyclerView.ItemDecoration {
     }
 
     @Override
-    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+    public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
         if (mLayoutStyle == VERTICAL_LIST) {
             drawHorizontal(c, parent);
         } else if (mLayoutStyle == LayoutHelper.LayoutStyle.HORIZONTAL_LIST) {

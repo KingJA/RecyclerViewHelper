@@ -17,7 +17,7 @@ import java.util.List;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class ListVerticalAdapter extends BaseRvAdaper<Music>implements RecyclerViewHelper.OnItemCallback   {
+public class ListVerticalAdapter extends BaseRvAdaper<Music> implements RecyclerViewHelper.OnItemCallback   {
 
 
     public ListVerticalAdapter(Context context, List<Music> list) {

@@ -11,7 +11,7 @@
         android:id="@+id/iv_music_img"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@mipmap/circle"/>
+        android:background="@mipmap/music_1"/>
 
     <TextView
         android:gravity="center"
@@ -24,6 +24,8 @@
         android:text="Hot2Touch (Kyle Watson Remix)"/>
 
     <TextView
+        android:singleLine="true"
+        android:ellipsize="end"
         android:id="@+id/tv_music_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

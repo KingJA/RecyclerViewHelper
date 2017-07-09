@@ -6,7 +6,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kingja.recyclerviewhelper.BaseRvAdaper;
+import com.kingja.recyclerviewhelper.RecyclerViewHelper;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -15,7 +17,7 @@ import java.util.List;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class ListHorizontalAdapter extends BaseRvAdaper<Music>  {
+public class ListHorizontalAdapter extends BaseRvAdaper<Music> implements RecyclerViewHelper.OnItemCallback  {
 
 
     public ListHorizontalAdapter(Context context, List<Music> list) {
@@ -54,5 +56,17 @@ public class ListHorizontalAdapter extends BaseRvAdaper<Music>  {
             tv_music_author = (TextView) itemView.findViewById(R.id.tv_music_author);
             iv_music_img = (ImageView) itemView.findViewById(R.id.iv_music_img);
         }
+    }
+
+    @Override
+    public void onMove(int fromPosition, int toPosition) {
+        Collections.swap(list, fromPosition, toPosition);
+        notifyItemMoved(fromPosition, toPosition);
+    }
+
+    @Override
+    public void onSwipe(int position) {
+        list.remove(position);
+        notifyItemRemoved(position);
     }
 }

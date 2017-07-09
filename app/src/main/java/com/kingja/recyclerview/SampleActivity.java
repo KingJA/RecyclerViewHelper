@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -31,14 +32,13 @@ public class SampleActivity extends AppCompatActivity {
     private String[] musicNames = {"Hot2Touch (Kyle Watson Remix)", "Glory (Bunker Sessions)", "Sweat", "Something To" +
             " " +
             "Tell You", "4:44", "ISSA", "Do Not Revenge", "Hug of Thunder", "Swimming Pool Summer", "Get Low",
-            "Hearts", "Vault Vol. 2"};
+            "Hearts"};
     private String[] musicAuthors = {"Felix Jaehn", "Bastille", "The All-American Rejects", "HAIM",
             "4:44", "21 Savage", "Dan Black", "Broken Social Scene", "Capital Cities", "Zedd",
-            "Gill Chang", "STRFKR"};
+            "Gill Chang"};
     private int resIds[] = {R.mipmap.music_1, R.mipmap.music_2, R.mipmap.music_3, R.mipmap.music_4, R.mipmap.music_5,
             R.mipmap.music_6, R
-            .mipmap.music_7, R.mipmap.music_8, R.mipmap.music_9, R.mipmap.music_10, R.mipmap.music_11, R.mipmap
-            .music_12};
+            .mipmap.music_7, R.mipmap.music_8, R.mipmap.music_9, R.mipmap.music_10, R.mipmap.music_11};
     private RecyclerView mRv;
     private TextView mTvDivideWidth;
     private AppCompatSeekBar mSeekbarDivideWidth;
@@ -50,11 +50,13 @@ public class SampleActivity extends AppCompatActivity {
     private List<Music> musics = new ArrayList<>();
     private String[] styles = {"vertical", "horizontal", "grid"};
     private RecyclerViewHelper recyclerViewHelper;
-    private int dividerWidth;
-    private int dividerColor=0xffFF4081;
+    private int dividerHeight;
+    private int dividerColor = 0xffFF4081;
     private RecyclerView.ItemDecoration itemDecoration;
     private BaseRvAdaper mAdapter;
     private LayoutHelper.LayoutStyle layoutStyle;
+    private boolean dragable;
+    private boolean slideable;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,12 +68,10 @@ public class SampleActivity extends AppCompatActivity {
         setData();
     }
 
-
     private void initData() {
         for (int i = 0; i < musicNames.length; i++) {
             musics.add(new Music(musicNames[i], musicAuthors[i], resIds[i]));
         }
-
     }
 
     private void initView() {
@@ -89,20 +89,23 @@ public class SampleActivity extends AppCompatActivity {
 
 
     private void setData() {
-        mAdapter  = new ListVerticalAdapter(this, musics);
+        mAdapter = new ListVerticalAdapter(this, musics);
         layoutStyle = LayoutHelper.LayoutStyle.VERTICAL_LIST;
-        reFreshRv();
+        refreshRv();
     }
 
-    private void reFreshRv() {
+    private void refreshRv() {
         if (itemDecoration != null) {
             mRv.removeItemDecoration(itemDecoration);
         }
         recyclerViewHelper = new RecyclerViewHelper.Builder(this)
                 .setAdapter(mAdapter)
                 .setLayoutStyle(layoutStyle)
-                .setDividerHeight(dividerWidth)
+                .setDividerHeight(dividerHeight)
                 .setDividerColor(dividerColor)
+                .setSwipeable(slideable)
+                .setDragable(dragable)
+                .setColumns(3)
                 .build();
         recyclerViewHelper.attachToRecyclerView(mRv);
         itemDecoration = recyclerViewHelper.getItemDecoration();
@@ -134,7 +137,7 @@ public class SampleActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 setOrientation(position);
-                reFreshRv();
+                refreshRv();
             }
 
             @Override
@@ -146,8 +149,8 @@ public class SampleActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 mTvDivideWidth.setText(progress + "dp");
-                dividerWidth = progress;
-                reFreshRv();
+                dividerHeight = progress;
+                refreshRv();
             }
 
             @Override
@@ -160,5 +163,21 @@ public class SampleActivity extends AppCompatActivity {
 
             }
         });
+        mCbDragable.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                dragable = isChecked;
+                refreshRv();
+            }
+        });
+        mCbSlideable.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                slideable = isChecked;
+                refreshRv();
+            }
+        });
     }
+
+
 }

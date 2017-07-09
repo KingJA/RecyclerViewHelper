@@ -30,11 +30,10 @@ public class GridItemDecoration extends RecyclerView.ItemDecoration {
     }
 
     @Override
-    public void onDraw(Canvas c, RecyclerView parent, State state) {
+    public void onDrawOver(Canvas c, RecyclerView parent, State state) {
         drawHorizontal(c, parent);
         drawVertical(c, parent);
     }
-
 
     public void drawHorizontal(Canvas c, RecyclerView parent) {
         int childCount = parent.getChildCount();
